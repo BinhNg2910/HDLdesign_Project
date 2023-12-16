@@ -41,7 +41,6 @@ module buttons( clk, enb, sw0, sw1, btn, a_hour, a_min);
             //        if (clk) begin
             case (p)
                 4'b0100: begin
-
                     if (a_min >= 6'd59) begin
                         a_min <= 0;
                         if (a_hour >= 6'd23) a_hour <= 0;
@@ -50,7 +49,6 @@ module buttons( clk, enb, sw0, sw1, btn, a_hour, a_min);
                     else a_min <= a_min + 1;
                 end
                 4'b1000: begin
-
                     if (a_hour >= 6'd23) a_hour <= 6'd0;
                     else a_hour <= a_hour+6'd1;
                 end

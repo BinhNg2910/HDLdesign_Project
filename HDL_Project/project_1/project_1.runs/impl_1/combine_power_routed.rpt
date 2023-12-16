@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-| Date             : Tue Dec 12 15:50:37 2023
+| Date             : Sat Dec 16 22:20:29 2023
 | Host             : RamBo running 64-bit major release  (build 9200)
 | Command          : report_power -file combine_power_routed.rpt -pb combine_power_summary_routed.pb -rpx combine_power_routed.rpx
 | Design           : combine
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+----------------------------------+
-| Total On-Chip Power (W)  | 51.739 (Junction temp exceeded!) |
+| Total On-Chip Power (W)  | 26.889 (Junction temp exceeded!) |
 | Design Power Budget (W)  | Unspecified*                     |
 | Power Budget Margin (W)  | NA                               |
-| Dynamic (W)              | 50.698                           |
+| Dynamic (W)              | 25.848                           |
 | Device Static (W)        | 1.041                            |
 | Effective TJA (C/W)      | 11.5                             |
 | Max Ambient (C)          | 0.0                              |
@@ -52,16 +52,17 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     0.456 |      397 |       --- |             --- |
-|   LUT as Logic |     0.393 |      161 |     53200 |            0.30 |
-|   Register     |     0.030 |      148 |    106400 |            0.14 |
+| Slice Logic    |     0.346 |      348 |       --- |             --- |
+|   LUT as Logic |     0.293 |      145 |     53200 |            0.27 |
 |   CARRY4       |     0.027 |       15 |     13300 |            0.11 |
+|   Register     |     0.020 |      122 |    106400 |            0.11 |
 |   BUFG         |     0.006 |        1 |        32 |            3.13 |
-|   Others       |     0.000 |       21 |       --- |             --- |
-| Signals        |     1.116 |      307 |       --- |             --- |
-| I/O            |    49.126 |       51 |       125 |           40.80 |
+|   F7/F8 Muxes  |    <0.001 |        1 |     53200 |           <0.01 |
+|   Others       |     0.000 |       19 |       --- |             --- |
+| Signals        |     0.705 |      273 |       --- |             --- |
+| I/O            |    24.798 |       51 |       125 |           40.80 |
 | Static Power   |     1.041 |          |           |                 |
-| Total          |    51.739 |          |           |                 |
+| Total          |    26.889 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -71,9 +72,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     1.895 |       1.596 |      0.299 |
-| Vccaux    |       1.800 |     1.899 |       1.799 |      0.100 |
-| Vcco33    |       3.300 |    13.899 |      13.898 |      0.001 |
+| Vccint    |       1.000 |     1.377 |       1.078 |      0.299 |
+| Vccaux    |       1.800 |     1.008 |       0.908 |      0.100 |
+| Vcco33    |       3.300 |     7.012 |       7.011 |      0.001 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
@@ -145,23 +146,22 @@ Table of Contents
 +-------------+-----------+
 | Name        | Power (W) |
 +-------------+-----------+
-| combine     |    50.698 |
-|   alarm     |     0.052 |
+| combine     |    25.848 |
+|   alarm     |    <0.001 |
 |   alert     |     0.017 |
-|   but       |     0.048 |
-|   dc        |     0.066 |
-|   dis1      |     0.029 |
-|   dis2      |     0.006 |
-|   dis3      |     0.034 |
-|   dis4      |     0.017 |
-|   dis5      |     0.085 |
-|   dis6      |     0.056 |
-|   get       |     0.204 |
-|   monthDate |     0.207 |
-|     e0      |     0.044 |
-|     e1      |     0.048 |
-|     e2      |     0.056 |
-|     e3      |     0.023 |
+|   dc        |     0.217 |
+|     e0      |     0.068 |
+|     e1      |     0.031 |
+|     e2      |     0.018 |
+|     e3      |     0.027 |
+|   dis1      |     0.004 |
+|   dis2      |     0.008 |
+|   dis3      |     0.018 |
+|   dis4      |     0.018 |
+|   dis5      |     0.034 |
+|   dis6      |     0.011 |
+|   get       |     0.208 |
+|   monthDate |     0.046 |
 +-------------+-----------+
 
 

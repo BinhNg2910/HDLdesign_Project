@@ -19,11 +19,12 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module clock(clk, enb, sw0, sw1, btn, hour, min, sec);
+module clock(clk, enb, sw0, sw1, btn, mode, hour, min, sec);
     input clk;
     input enb;
     input sw0, sw1;
     input [3:0] btn;
+    input mode;
     output reg [5:0] hour, min, sec;
 
     wire p0, p1, p2, p3;
@@ -37,24 +38,42 @@ module clock(clk, enb, sw0, sw1, btn, hour, min, sec);
 
     always @ (posedge clk)
     begin
+        if(mode == 0) begin
         if(|p) begin
             case (p)
-                4'b0001: begin
-                    if (sw1 == 1'b1) begin
+                4'b0100: begin
+
                         if (min >= 6'd59) begin
                             min <= 0;
                             if (hour >= 6'd23) hour <= 6'd0;
                             else hour <= hour + 6'd1;
                         end
                         else min <= min+6'd1;
-                    end
+
                 end
-                4'b0010:begin
-                    if (sw1 == 1'b1) begin
+                4'b1000:begin
+
                         if (hour >= 6'd23) hour <= 6'd0;
                         else hour <= hour + 6'd1;
-                    end
+
                 end
+                4'b0001: begin
+
+                        if (min <= 6'd0) begin
+                            min <= 59;
+                            if (hour <= 6'd0) hour <= 6'd23;
+                            else hour <= hour - 6'd1;
+                        end
+                        else min <= min - 6'd1;
+
+                end
+                4'b0010:begin
+
+                        if (hour <= 6'd0) hour <= 6'd23;
+                        else hour <= hour - 6'd1;
+
+                end
+
             endcase
         end
         else if (enb) begin
@@ -68,6 +87,7 @@ module clock(clk, enb, sw0, sw1, btn, hour, min, sec);
                 else min <= min + 6'd1;
             end
             else sec <= sec + 6'd1;
+        end
         end
     end
 endmodule

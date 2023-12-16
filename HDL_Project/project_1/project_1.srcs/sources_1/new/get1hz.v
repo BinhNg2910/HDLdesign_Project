@@ -19,7 +19,6 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
 module get1hz(clk, enb);
     input clk;
     output reg enb;
@@ -30,6 +29,4 @@ module get1hz(clk, enb);
         else cnt <= cnt+1;
         enb <= (cnt == 0) ? 1:0;
     end
-
-
 endmodule

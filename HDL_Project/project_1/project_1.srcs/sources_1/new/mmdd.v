@@ -45,7 +45,7 @@ module mmdd(
             case (p)
                 4'b0001: begin
                     if (sw1 == 0) begin 
-                        dd <= dd+1; 
+                        dd <= dd + 1; 
                         if (mm == 6'd1 || mm==6'd3 || mm==6'd5 || mm==6'd7 || mm == 6'd8 || mm == 6'd10) begin //th ng 1
                             if (dd >= 6'd31) begin
                                 dd <= 1;

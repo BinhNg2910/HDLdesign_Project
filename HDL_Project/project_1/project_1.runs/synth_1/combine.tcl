@@ -32,7 +32,6 @@ set_property ip_cache_permissions {read write} [current_project]
 read_verilog -library xil_defaultlib {
   {C:/Users/vanbi/OneDrive - hcmut.edu.vn/Subjects/TKLL_HDL/HDL_Project/project_1/project_1.srcs/sources_1/new/Module_Support.v}
   {C:/Users/vanbi/OneDrive - hcmut.edu.vn/Subjects/TKLL_HDL/HDL_Project/project_1/project_1.srcs/sources_1/new/alarmClk.v}
-  {C:/Users/vanbi/OneDrive - hcmut.edu.vn/Subjects/TKLL_HDL/HDL_Project/project_1/project_1.srcs/sources_1/new/buttons.v}
   {C:/Users/vanbi/OneDrive - hcmut.edu.vn/Subjects/TKLL_HDL/HDL_Project/project_1/project_1.srcs/sources_1/new/clock.v}
   {C:/Users/vanbi/OneDrive - hcmut.edu.vn/Subjects/TKLL_HDL/HDL_Project/project_1/project_1.srcs/sources_1/new/edge_detector.v}
   {C:/Users/vanbi/OneDrive - hcmut.edu.vn/Subjects/TKLL_HDL/HDL_Project/project_1/project_1.srcs/sources_1/new/get1hz.v}
