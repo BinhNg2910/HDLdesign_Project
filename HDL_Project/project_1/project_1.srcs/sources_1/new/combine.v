@@ -49,8 +49,8 @@ module combine(led1, led2, led3, led4, led5, led6, l_red, l_blue, sw0, sw1, btn,
 //    buttons but(clk, enb, sw0, sw1, btn, a_hr, a_min);
 //    clock dc(clk, enb, sw0, sw1, btn, hr, min, sec);
 //    alarmClk alarm(clk, btn, sw0, hr, min, sec, a_hr, a_min, mode_controller, h1, h2, m1, m2, s1, s2, al_on);
-    clock dc(clk, enb, sw0, sw1, btn, mode_controller, hr, min, sec);
-    alarmClk alarm(clk, btn, sw0, hr, min, sec, mode_controller, a_hr1, a_hr2, a_min1, a_min2, al_on);
+    clock dc(clk, enb, btn, mode_controller, hr, min, sec);
+    alarmClk alarm(clk, btn, sw0, hr, min, mode_controller, a_hr1, a_hr2, a_min1, a_min2, al_on);
     mmdd monthDate(clk, enb, sw1, btn, hr, min, sec, mm1, mm2, dd1, dd2);
     policeSiren alert(al_on, clk, l_red, l_blue);
 
@@ -76,8 +76,8 @@ module combine(led1, led2, led3, led4, led5, led6, l_red, l_blue, sw0, sw1, btn,
         end
         sw1_prev <= sw1;
         if(mode_controller == 0) begin
-            led1_reg <= h1;
-            led2_reg <= h2;
+            led1_reg <= h2;
+            led2_reg <= h1;
             led3_reg <= m1;
             led4_reg <= m2;
             led5_reg <= s1;

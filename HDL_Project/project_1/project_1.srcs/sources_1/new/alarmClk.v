@@ -1,30 +1,10 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 05/02/2022 03:20:42 PM
-// Design Name: 
-// Module Name: alarmClk
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module alarmClk(
     input clk,
     input [3:0] btn,
     input sw0,
-    input [5:0] c_hour, c_min, c_sec,
+    input [5:0] c_hour, c_min,
 //    input [5:0] a_hr, a_min,
     input mode,
 //    output reg [3:0] hr1, hr2, min1, min2, s1, s2,
@@ -62,16 +42,8 @@ module alarmClk(
                         //Display alarm
                         if(a_min >= 59) begin
                             a_min = 6'd0;
-//                            if(a_hr >= 6'd23) a_hr = 6'd0;
-//                            else a_hr = a_hr + 1;
                         end
-                        else a_min = a_min + 1;
-//                        hr1 = a_hr1;
-//                        hr2 <= a_hr2;
-//                        min1 <= a_min1;
-//                        min2 <= a_min2;
-//                        s1 <= 4'd0;
-//                        s2 <= 4'd0;             
+                        else a_min = a_min + 1;          
                     end
                     4'b1000: begin
                         //Display alarm
@@ -82,8 +54,7 @@ module alarmClk(
                         //Display alarm
                         if(a_min <= 0) begin
                             a_min = 6'd59;
-//                            if(a_hr <= 6'd0) a_hr = 6'd0;
-//                            else a_hr = a_hr + 1;
+
                         end
                         else a_min = a_min + 1;
                     end
@@ -92,67 +63,13 @@ module alarmClk(
                         if(a_hr <= 0)
                             a_hr = 6'd23; 
                     end                    
-                    //        By default, set it to clock
-//                    default: begin
-//                        hr1 <= c_hr1;
-//                        hr2 <= c_hr2;
-//                        min1 <= c_min1;
-//                        min2 <= c_min2;
-//                        s1 <= c_sec1;
-//                        s2 <= c_sec2;
-//                    end
                 endcase
             end
         end
-//        if (|p) begin
-//            case (p)
-//                4'b0100: begin
-//                    //Display alarm
-//                    hr1 <= a_hr1;
-//                    hr2 <= a_hr2;
-//                    min1 <= a_min1;
-//                    min2 <= a_min2;
-//                    s1 <= 4'd0;
-//                    s2 <= 4'd0;             
-//                end
-//                4'b1000: begin
-//                    //Display alarm
-//                    hr1 <= a_hr1;
-//                    hr2 <= a_hr2;
-//                    min1 <= a_min1;
-//                    min2 <= a_min2;
-//                    s1 <= 4'd0;
-//                    s2 <= 4'd0;  
-//                end
-//                //        By default, set it to clock
-//                default: begin
-//                    hr1 <= c_hr1;
-//                    hr2 <= c_hr2;
-//                    min1 <= c_min1;
-//                    min2 <= c_min2;
-//                    s1 <= c_sec1;
-//                    s2 <= c_sec2;
-//                end
-//            endcase
-//        end
-//        else begin
-//            hr1 <= c_hr1;
-//            hr2 <= c_hr2;
-//            min1 <= c_min1;
-//            min2 <= c_min2;
-//            s1 <= c_sec1;
-//            s2 <= c_sec2;
-//        end
     end
     assign a_hr1_tmp = a_hr/6'd10;
     assign a_hr2_tmp = a_hr%6'd10;
     assign a_min1_tmp = a_min/6'd10;
     assign a_min2_tmp = a_min%6'd10;
-    
-//    assign c_hr1 = c_hour / 6'd10;
-//    assign c_hr2 = c_hour % 6'd10;
-//    assign c_min1 = c_min / 6'd10;
-//    assign c_min2 = c_min % 6'd10;
-//    assign c_sec1 = c_sec / 6'd10;
-//    assign c_sec2 = c_sec % 6'd10;
+
 endmodule
