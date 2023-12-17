@@ -69,8 +69,8 @@ module clock(clk, enb, btn, mode, hour, min, sec);
                 endcase
 //            end
             end
-        end    
-        else if (enb) begin
+        end 
+        else if(!enb) begin
             if(sec >= 6'd59) begin   
                 sec <= 0;
                 if( min >= 6'd59) begin   

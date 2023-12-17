@@ -108,5 +108,4 @@ module combine(led1, led2, led3, led4, led5, led6, l_red, l_blue, sw0, sw1, btn,
             led6_reg <= 0;        
         end
     end
-
 endmodule

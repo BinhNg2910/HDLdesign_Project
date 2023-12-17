@@ -8,11 +8,11 @@ module alarmClk(
 //    input [5:0] a_hr, a_min,
     input mode,
 //    output reg [3:0] hr1, hr2, min1, min2, s1, s2,
-    output [5:0] a_hr1, a_hr2, a_min1, a_min2,
+    output [5:0] a_hr1_tmp, a_hr2_tmp, a_min1_tmp, a_min2_tmp,
     output reg alarm
 );
     wire [3:0] c_hr1, c_hr2, c_min1, c_min2, c_sec1, c_sec2;
-    wire [3:0] a_hr1_tmp, a_hr2_tmp, a_min1_tmp, a_min2_tmp;
+//    wire [3:0] a_hr1_tmp, a_hr2_tmp, a_min1_tmp, a_min2_tmp;
     reg [5:0] a_hr, a_min;
 
     //    policeSiren alert(alarm, clk, l_red, l_blue);
