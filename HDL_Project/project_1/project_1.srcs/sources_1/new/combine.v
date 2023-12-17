@@ -76,12 +76,12 @@ module combine(led1, led2, led3, led4, led5, led6, l_red, l_blue, sw0, sw1, btn,
         end
         sw1_prev <= sw1;
         if(mode_controller == 0) begin
-            led1_reg <= h2;
-            led2_reg <= h1;
-            led3_reg <= m1;
-            led4_reg <= m2;
-            led5_reg <= s1;
-            led6_reg <= s2;
+            led1_reg <= 1;
+            led2_reg <= 1;
+            led3_reg <= 1;
+            led4_reg <= 1;
+            led5_reg <= 1;
+            led6_reg <= 1;
         end
         else if(mode_controller == 1) begin
             led1_reg <= mm1;
@@ -92,14 +92,20 @@ module combine(led1, led2, led3, led4, led5, led6, l_red, l_blue, sw0, sw1, btn,
             led6_reg <= 0;            
         end
         else if(mode_controller == 2) begin
-            led1_reg <= mm1;
-            led2_reg <= mm2;
-            led3_reg <= dd1;
-            led4_reg <= dd2;
+            led1_reg <= a_hr1;
+            led2_reg <= a_hr2;
+            led3_reg <= a_min1;
+            led4_reg <= a_min2;
             led5_reg <= 0;
             led6_reg <= 0;
         end
         else if(mode_controller == 3) begin
+            led1_reg <= 0;
+            led2_reg <= 0;
+            led3_reg <= 0;
+            led4_reg <= 0;
+            led5_reg <= 0;
+            led6_reg <= 0;        
         end
     end
 

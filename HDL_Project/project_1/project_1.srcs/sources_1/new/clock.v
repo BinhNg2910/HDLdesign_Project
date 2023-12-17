@@ -38,7 +38,8 @@ module clock(clk, enb, btn, mode, hour, min, sec);
 
     always @ (posedge clk)
     begin
-        if(mode == 0 && |p) begin
+        if(|p) begin
+            if(mode == 0 && |p) begin
 //            if(|p) begin
                 case (p)
                     4'b0100: begin
@@ -67,6 +68,7 @@ module clock(clk, enb, btn, mode, hour, min, sec);
                     end
                 endcase
 //            end
+            end
         end    
         else if (enb) begin
             if(sec >= 6'd59) begin   
