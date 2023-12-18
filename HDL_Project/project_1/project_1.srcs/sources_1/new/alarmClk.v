@@ -54,7 +54,6 @@ module alarmClk(
                         //Display alarm
                         if(a_min <= 0) begin
                             a_min = 6'd59;
-
                         end
                         else a_min = a_min + 1;
                     end

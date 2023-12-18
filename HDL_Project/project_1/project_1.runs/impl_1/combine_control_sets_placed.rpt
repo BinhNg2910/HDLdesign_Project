@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-| Date         : Sun Dec 17 17:08:04 2023
+| Date         : Mon Dec 18 10:44:00 2023
 | Host         : RamBo running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file combine_control_sets_placed.rpt
 | Design       : combine
@@ -23,8 +23,8 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Number of unique control sets                            |    11 |
-| Unused register locations in slices containing registers |    34 |
+| Number of unique control sets                            |    16 |
+| Unused register locations in slices containing registers |    50 |
 +----------------------------------------------------------+-------+
 
 
@@ -34,10 +34,11 @@ Table of Contents
 +--------+--------------+
 | Fanout | Control Sets |
 +--------+--------------+
-|      2 |            1 |
+|      2 |            2 |
 |      8 |            1 |
 |     10 |            1 |
-|     12 |            4 |
+|     12 |            7 |
+|     14 |            1 |
 |    16+ |            4 |
 +--------+--------------+
 
@@ -48,32 +49,37 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              22 |            8 |
+| No           | No                    | No                     |              54 |           16 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |              56 |            7 |
-| Yes          | No                    | No                     |              36 |            8 |
+| No           | Yes                   | No                     |              70 |           11 |
+| Yes          | No                    | No                     |              74 |           14 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |             132 |           24 |
+| Yes          | Yes                   | No                     |             144 |           21 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+----------------+------------------------------+--------------------+------------------+----------------+
-|  Clock Signal  |         Enable Signal        |  Set/Reset Signal  | Slice Load Count | Bel Load Count |
-+----------------+------------------------------+--------------------+------------------+----------------+
-|  clk_IBUF_BUFG | dc/al_on                     |                    |                1 |              2 |
-|  clk_IBUF_BUFG | mode_controller[3]_i_2_n_0   | mode_controller    |                1 |              8 |
-|  clk_IBUF_BUFG | monthDate/e2/hour_reg[4][0]  |                    |                1 |             10 |
-|  clk_IBUF_BUFG | monthDate/e0/E[0]            | monthDate/e2/SR[0] |                2 |             12 |
-|  clk_IBUF_BUFG | monthDate/e2/min_reg[5]_0[0] |                    |                3 |             12 |
-|  clk_IBUF_BUFG | monthDate/e2/E[0]            |                    |                3 |             12 |
-|  clk_IBUF_BUFG | monthDate/e3/E[0]            | dc/SR[0]           |                2 |             12 |
-|  clk_IBUF_BUFG |                              |                    |                8 |             22 |
-|  clk_IBUF_BUFG | led1_reg[2]_i_2_n_0          | led4_reg           |               12 |             44 |
-|  clk_IBUF_BUFG |                              | get/clear          |                7 |             56 |
-|  clk_IBUF_BUFG | dc/al_on                     | alert/counter      |                7 |             56 |
-+----------------+------------------------------+--------------------+------------------+----------------+
++----------------+-----------------------------------------+---------------------+------------------+----------------+
+|  Clock Signal  |              Enable Signal              |   Set/Reset Signal  | Slice Load Count | Bel Load Count |
++----------------+-----------------------------------------+---------------------+------------------+----------------+
+|  clk_IBUF_BUFG | dc/al_on                                |                     |                1 |              2 |
+|  clk_IBUF_BUFG | countDown/timeout_on                    |                     |                1 |              2 |
+|  clk_IBUF_BUFG | mode_controller[3]_i_2_n_0              | mode_controller     |                2 |              8 |
+|  clk_IBUF_BUFG | dc/e3/E[0]                              |                     |                2 |             10 |
+|  clk_IBUF_BUFG | dc/e0/dd_reg[5][0]                      | monthDate/SR[0]     |                3 |             12 |
+|  clk_IBUF_BUFG | dc/e1/E[0]                              |                     |                3 |             12 |
+|  clk_IBUF_BUFG | dc/e3/sec_reg[0]_0[0]                   | dc/e3/SR[0]         |                2 |             12 |
+|  clk_IBUF_BUFG | dc/e2/E[0]                              |                     |                2 |             12 |
+|  clk_IBUF_BUFG | countDown/countdown_countsec[5]_i_1_n_0 |                     |                1 |             12 |
+|  clk_IBUF_BUFG | countDown/countdown_countmin[5]_i_1_n_0 |                     |                2 |             12 |
+|  clk_IBUF_BUFG | countDown/countdown_counthr[5]_i_1_n_0  |                     |                2 |             12 |
+|  clk_IBUF_BUFG |                                         | led5_reg[2]_i_1_n_0 |                4 |             14 |
+|  clk_IBUF_BUFG |                                         |                     |               16 |             54 |
+|  clk_IBUF_BUFG |                                         | get/clear           |                7 |             56 |
+|  clk_IBUF_BUFG | dc/al_on                                | alert/counter_red   |                7 |             56 |
+|  clk_IBUF_BUFG | countDown/timeout_on                    | alert/counter_blue  |                7 |             56 |
++----------------+-----------------------------------------+---------------------+------------------+----------------+
 
 

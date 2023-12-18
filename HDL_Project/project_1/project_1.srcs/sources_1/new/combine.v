@@ -30,10 +30,11 @@ module combine(led1, led2, led3, led4, led5, led6, l_red, l_blue, sw0, sw1, btn,
     output l_red, l_blue;
 
     wire enb;
-    wire al_on;
+    wire al_on, timeout_on, count_flag;
 
     wire [3:0] h1, h2, m1, m2, s1, s2;
     wire [3:0] dd1, dd2, mm1, mm2;
+    wire [3:0] counth1, counth2, countm1, countm2, counts1, counts2;
     
     reg [3:0] led1_reg, led2_reg, led3_reg, led4_reg, led5_reg, led6_reg; 
     
@@ -41,6 +42,7 @@ module combine(led1, led2, led3, led4, led5, led6, l_red, l_blue, sw0, sw1, btn,
 //    wire [5:0] a_hr , a_min;
     wire [5:0] dd, mm;
     wire [5:0] a_hr1, a_hr2, a_min1, a_min2;
+    wire [5:0] counthr, countmin, countsec;
     
     reg [3:0] mode_controller;
     reg [3:0] sw1_prev;
@@ -52,14 +54,23 @@ module combine(led1, led2, led3, led4, led5, led6, l_red, l_blue, sw0, sw1, btn,
     clock dc(clk, enb, btn, mode_controller, hr, min, sec);
     alarmClk alarm(clk, btn, sw0, hr, min, mode_controller, a_hr1, a_hr2, a_min1, a_min2, al_on);
     mmdd monthDate(clk, enb, sw1, btn, hr, min, sec, mm1, mm2, dd1, dd2);
-    policeSiren alert(al_on, clk, l_red, l_blue);
+    countClock counting(clk, btn, mode_controller, counthr, countmin, countsec, count_flag);
+    countTimer countDown(clk, count_flag, counthr, countmin, countsec, counthr, countmin, countsec, timeout_on);
+    policeSiren alert(al_on, timeout_on, clk, l_red, l_blue);
 
     assign h1 = hr / 6'd10;
-    assign h2 = hr% 6'd10;
+    assign h2 = hr % 6'd10;
     assign m1 = min / 6'd10;
     assign m2 = min % 6'd10;
     assign s1 = sec / 6'd10;
     assign s2 = sec % 6'd10;
+
+    assign counth1 = counthr / 6'd10;
+    assign counth2 = counthr % 6'd10;
+    assign countm1 = countmin / 6'd10;
+    assign countm2 = countmin % 6'd10;
+    assign counts1 = countsec / 6'd10;
+    assign counts2 = countsec % 6'd10;
 
     display dis1(led1, led1_reg);
     display dis2(led2, led2_reg);
@@ -71,17 +82,17 @@ module combine(led1, led2, led3, led4, led5, led6, l_red, l_blue, sw0, sw1, btn,
     //display on led whether it is mm/dd or hh/mm/ss
     always @(posedge clk) begin
         if(sw1 == 1 & ~sw1_prev) begin
-            if(mode_controller >= 3'b011) mode_controller <= 3'b000;
+            if(mode_controller >= 3'b101) mode_controller <= 3'b000;
             else mode_controller <= mode_controller + 1;
         end
         sw1_prev <= sw1;
         if(mode_controller == 0) begin
-            led1_reg <= 1;
-            led2_reg <= 1;
-            led3_reg <= 1;
-            led4_reg <= 1;
-            led5_reg <= 1;
-            led6_reg <= 1;
+            led1_reg <= h1;
+            led2_reg <= h2;
+            led3_reg <= m1;
+            led4_reg <= m2;
+            led5_reg <= s1;
+            led6_reg <= s2;
         end
         else if(mode_controller == 1) begin
             led1_reg <= mm1;
@@ -100,12 +111,28 @@ module combine(led1, led2, led3, led4, led5, led6, l_red, l_blue, sw0, sw1, btn,
             led6_reg <= 0;
         end
         else if(mode_controller == 3) begin
-            led1_reg <= 0;
-            led2_reg <= 0;
-            led3_reg <= 0;
-            led4_reg <= 0;
-            led5_reg <= 0;
-            led6_reg <= 0;        
+            led1_reg <= counth1;
+            led2_reg <= counth2;
+            led3_reg <= countm1;
+            led4_reg <= countm2;
+            led5_reg <= counts1;
+            led6_reg <= counth2;        
+        end
+        else if(mode_controller == 4) begin
+            led1_reg <= 2;
+            led2_reg <= 2;
+            led3_reg <= 2;
+            led4_reg <= 2;
+            led5_reg <= 2;
+            led6_reg <= 2;        
+        end
+        else begin
+            led1_reg <= 9;
+            led2_reg <= 9;
+            led3_reg <= 9;
+            led4_reg <= 9;
+            led5_reg <= 9;
+            led6_reg <= 9;                
         end
     end
 endmodule
