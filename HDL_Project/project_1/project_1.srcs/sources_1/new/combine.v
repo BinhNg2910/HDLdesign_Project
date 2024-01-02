@@ -1,24 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 04/30/2022 08:57:28 AM
-// Design Name: 
-// Module Name: combine
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module combine(led1, led2, led3, led4, led5, led6, l_red, l_blue, sw0, sw1, btn, clk);
     input sw0, sw1;
@@ -56,15 +36,15 @@ module combine(led1, led2, led3, led4, led5, led6, l_red, l_blue, sw0, sw1, btn,
     alarmClk alarm(clk, btn, sw0, hr, min, mode_controller, a_hr, a_min, al_on);
     mmdd monthDate(clk, mode_controller, btn, hr, min, sec, mm1, mm2, dd1, dd2);
     countClock counting(clk, mode_controller, btn, counthr, countmin, countsec, count_flag);
-//    countTimer countDown(clk, count_flag, counthr, countmin, countsec, counthr_tmp, countmin_tmp, countsec_tmp, timeout_on);
+    countTimer countDown(clk, count_flag, counthr, countmin, countsec, counthr_tmp, countmin_tmp, countsec_tmp, timeout_on);
     policeSiren alert(al_on, timeout_on, clk, l_red, l_blue);
 
-    assign h1 = hr / 6'd10;
-    assign h2 = hr % 6'd10;
-    assign m1 = min / 6'd10;
-    assign m2 = min % 6'd10;
-    assign s1 = sec / 6'd10;
-    assign s2 = sec % 6'd10;
+//    assign h1 = hr / 6'd10;
+//    assign h2 = hr % 6'd10;
+//    assign m1 = min / 6'd10;
+//    assign m2 = min % 6'd10;
+//    assign s1 = sec / 6'd10;
+//    assign s2 = sec % 6'd10;
 
     assign a_hr1 = a_hr / 6'd10;
     assign a_hr2 = a_hr % 6'd10;
@@ -97,11 +77,11 @@ module combine(led1, led2, led3, led4, led5, led6, l_red, l_blue, sw0, sw1, btn,
 //        end
         if(sw1 != sw1_prev)begin
             if(mode_controller >= 5) mode_controller <= 0;
-            else mode_controller <= mode_controller + 6'd1;    
+            else mode_controller <= mode_controller + 1;    
         end
         sw1_prev <= sw1;        
         
-        if(mode_controller == 4'd0) begin
+        if(mode_controller == 0) begin
             led1_reg <= h1;
             led2_reg <= h2;
             led3_reg <= m1;

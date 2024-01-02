@@ -24,7 +24,7 @@ module clock(clk, enb, btn, mode, hour, min, sec, h1, h2, m1, m2, s1, s2);
     input enb;
 //    input sw0, sw1;
     input [3:0] btn;
-    input mode;
+    input [3:0] mode;
     output reg [5:0] hour, min, sec;
     output [3:0] h1, h2, m1, m2, s1, s2;
     
@@ -37,10 +37,9 @@ module clock(clk, enb, btn, mode, hour, min, sec, h1, h2, m1, m2, s1, s2);
 
     assign p = {p3, p2, p1, p0};
 
-    always @ (posedge clk)
-    begin
-        if (mode == 0) begin
-            if(|p) begin
+    always @ (posedge clk) begin
+        if(|p) begin
+            if (mode == 0) begin
                 case (p)
                     4'b1000:begin
                         if (hour >= 6'd23) hour <= 6'd0;
@@ -67,7 +66,6 @@ module clock(clk, enb, btn, mode, hour, min, sec, h1, h2, m1, m2, s1, s2);
                         else min <= min - 6'd1;
                     end
                 endcase
-//            end
             end
         end 
         else if(enb) begin
@@ -84,10 +82,10 @@ module clock(clk, enb, btn, mode, hour, min, sec, h1, h2, m1, m2, s1, s2);
         end
     end
             
-//    assign h1 = hour / 6'd10;
-//    assign h2 = hour % 6'd10;
-//    assign m1 = min / 6'd10;
-//    assign m2 = min % 6'd10;
-//    assign s1 = sec / 6'd10;
-//    assign s2 = sec % 6'd10;
+    assign h1 = hour / 6'd10;
+    assign h2 = hour % 6'd10;
+    assign m1 = min / 6'd10;
+    assign m2 = min % 6'd10;
+    assign s1 = sec / 6'd10;
+    assign s2 = sec % 6'd10;
 endmodule

@@ -35,7 +35,7 @@ module policeSiren(enb_alarm, enb_count, clk_in, clk_out_red, clk_out_blue);
             clk_out_red <= (counter_red < Div/2)? 1'b1 : 1'b0;
         end
 
-        if (!enb_count) begin
+        if (enb_count) begin
             counter_blue <= counter_blue + 28'd1;
             if (counter_blue >= (Div-1)) counter_blue <= 28'd0;
             clk_out_blue <= (counter_blue < Div/2)? 1'b1 : 1'b0;
