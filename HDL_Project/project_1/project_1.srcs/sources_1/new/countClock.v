@@ -22,10 +22,12 @@
 
 module countClock(
     input clk,
+    input enb,
     input [3:0] mode,
     input [3:0] btn,
     output reg [5:0] counthr, countmin, countsec,
-    output reg countflag
+    output reg countflag,
+    output reg timeout
     );
     
     wire p0, p1, p2, p3;
@@ -54,12 +56,42 @@ module countClock(
                         else countsec <= countsec + 1;
                     end 
                     4'b0001: begin
-                        if (countflag == 0) countflag <= 1;
-                        else countflag <= 0;
-//                        countflag <= ~countflag;
+//                        if (countflag == 0) countflag <= 1;
+//                        else begin 
+//                            countflag <= 0;
+//                            timeout <= 0;
+//                        end
+                        countflag <= 1;
                     end 
                 endcase
             end
+        end
+        if (enb) begin
+        if (countflag) begin
+            if (counthr == 6'd0 && countmin == 6'd0 && countsec == 6'd0) begin
+                timeout <= 1; // Countdown reached zero
+            end 
+            else if (countsec == 6'd0) begin
+//                countsec <= 59;
+                if (countmin == 6'd0) begin
+//                    countmin <= 59;
+                    if (counthr > 6'd0) begin
+                        counthr <= counthr - 1;
+                        countmin <= 59;
+                        countsec <= 59;
+                    end
+//                    else begin end
+                end
+                else begin
+                    countmin <= countmin - 1;
+                    countsec <= 59;
+                end
+            end 
+            else begin
+                countsec <= countsec - 1;
+            end
+        end
+        else timeout <= 0;
         end
     end
 endmodule

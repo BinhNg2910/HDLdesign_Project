@@ -15,15 +15,14 @@ module alarmClk(
 //    wire [3:0] a_hr1_tmp, a_hr2_tmp, a_min1_tmp, a_min2_tmp;
 //    reg [5:0] a_hr, a_min;
 
-    //    policeSiren alert(alarm, clk, l_red, l_blue);
 
-    always @ (c_hour, c_min, a_hr, a_min, sw0) begin
-        if (sw0 == 1'b1) begin
-            if ({c_hour, c_min} == {a_hr, a_min}) alarm <= 1'b1;
-            else alarm <= 1'b0;
-        end
-        else alarm <= 1'b0;
-    end
+//    always @ (c_hour, c_min, a_hr, a_min, sw0) begin
+//        if (sw0 == 1'b1) begin
+//            if ({c_hour, c_min} == {a_hr, a_min}) alarm <= 1'b1;
+//            else alarm <= 1'b0;
+//        end
+//        else alarm <= 1'b0;
+//    end
 
     wire p0, p1, p2, p3;
     wire [3:0] p;
@@ -35,6 +34,12 @@ module alarmClk(
     assign p = {p3, p2, p1, p0};
 
     always @ (posedge clk) begin
+    if (sw0 == 1'b1) begin
+        if ({c_hour, c_min} == {a_hr, a_min}) alarm <= 1'b1;
+        else alarm <= 1'b0;
+    end
+    else alarm <= 1'b0;
+    
 //    a_hr <= 17;
         if(mode == 2) begin
 //            a_min <= 4;

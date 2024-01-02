@@ -30,13 +30,6 @@ module countTimer(
     output reg timeout
     );
    
-//    reg [5:0] countdown_counthr;
-//    reg [5:0] countdown_countmin;
-//    reg [5:0] countdown_countsec;
-
-//    if (start_countdown) begin
-//        timeout <= 1'b0;
-//    end
     always @ (posedge clk) begin
 //        if (!start_countdown) begin
 //            countdown_counthr <= 6'd0;

@@ -10,8 +10,8 @@ module combine(led1, led2, led3, led4, led5, led6, l_red, l_blue, sw0, sw1, btn,
     output l_red, l_blue;
 
     wire enb;
-    wire al_on, timeout_on, count_flag;
-
+    wire al_on, count_flag, timeout_on;
+    
     wire [3:0] h1, h2, m1, m2, s1, s2;
     wire [3:0] dd1, dd2, mm1, mm2;
     wire [3:0] a_hr1, a_hr2, a_min1, a_min2;
@@ -22,7 +22,7 @@ module combine(led1, led2, led3, led4, led5, led6, l_red, l_blue, sw0, sw1, btn,
     wire [5:0] a_hr, a_min;
     wire [5:0] hr, min, sec;
     wire [5:0] dd, mm;
-    wire [5:0] counthr, countmin, countsec, counthr_tmp, countmin_tmp, countsec_tmp;
+    wire [5:0] counthr, countmin, countsec;
     
     reg [3:0] mode_controller;
     reg [3:0] sw1_prev;
@@ -35,8 +35,8 @@ module combine(led1, led2, led3, led4, led5, led6, l_red, l_blue, sw0, sw1, btn,
     clock dc(clk, enb, btn, mode_controller, hr, min, sec, h1, h2, m1, m2, s1, s2);
     alarmClk alarm(clk, btn, sw0, hr, min, mode_controller, a_hr, a_min, al_on);
     mmdd monthDate(clk, mode_controller, btn, hr, min, sec, mm1, mm2, dd1, dd2);
-    countClock counting(clk, mode_controller, btn, counthr, countmin, countsec, count_flag);
-    countTimer countDown(clk, count_flag, counthr, countmin, countsec, counthr_tmp, countmin_tmp, countsec_tmp, timeout_on);
+    countClock counting(clk, enb, mode_controller, btn, counthr, countmin, countsec, count_flag, timeout_on);
+//    countTimer countDown(clk, count_flag, counthr, countmin, countsec, counthr_tmp, countmin_tmp, countsec_tmp, timeout_on);
     policeSiren alert(al_on, timeout_on, clk, l_red, l_blue);
 
 //    assign h1 = hr / 6'd10;
@@ -51,9 +51,7 @@ module combine(led1, led2, led3, led4, led5, led6, l_red, l_blue, sw0, sw1, btn,
     assign a_min1 = a_min / 6'd10;
     assign a_min2 = a_min % 6'd10;
     
-//    assign counthr = counthr_tmp;
-//    assign countmin = countmin_tmp;
-//    assign countsec = countsec_tmp;
+
     
     assign counth1 = counthr / 6'd10;
     assign counth2 = counthr % 6'd10;
@@ -80,7 +78,7 @@ module combine(led1, led2, led3, led4, led5, led6, l_red, l_blue, sw0, sw1, btn,
             else mode_controller <= mode_controller + 1;    
         end
         sw1_prev <= sw1;        
-        
+       
         if(mode_controller == 0) begin
             led1_reg <= h1;
             led2_reg <= h2;
@@ -102,8 +100,8 @@ module combine(led1, led2, led3, led4, led5, led6, l_red, l_blue, sw0, sw1, btn,
             led2_reg <= a_hr2;
             led3_reg <= a_min1;
             led4_reg <= a_min2;
-            led5_reg <= 9;
-            led6_reg <= 9;
+            led5_reg <= 2;
+            led6_reg <= 2;
         end
         else if(mode_controller == 3) begin
             led1_reg <= counth1;

@@ -22,7 +22,7 @@
 
 module mmdd(
     input clk,
-    input mode,
+    input [3:0] mode,
     input [3:0] btn,
     input [5:0] hr, min, sec,
     output [3:0] mm1, mm2, dd1, dd2
