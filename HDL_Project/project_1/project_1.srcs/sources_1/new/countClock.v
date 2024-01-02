@@ -61,7 +61,7 @@ module countClock(
 //                            countflag <= 0;
 //                            timeout <= 0;
 //                        end
-                        countflag <= 1;
+                        countflag <= ~countflag;
                     end 
                 endcase
             end
@@ -70,17 +70,14 @@ module countClock(
         if (countflag) begin
             if (counthr == 6'd0 && countmin == 6'd0 && countsec == 6'd0) begin
                 timeout <= 1; // Countdown reached zero
-            end 
+            end
             else if (countsec == 6'd0) begin
-//                countsec <= 59;
                 if (countmin == 6'd0) begin
-//                    countmin <= 59;
                     if (counthr > 6'd0) begin
                         counthr <= counthr - 1;
                         countmin <= 59;
                         countsec <= 59;
                     end
-//                    else begin end
                 end
                 else begin
                     countmin <= countmin - 1;
