@@ -1,4 +1,23 @@
 `timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 12/17/2023 08:32:38 AM
+// Design Name: 
+// Module Name: ex3
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
 
 module combine(led1, led2, led3, led4, led5, led6, l_red, l_blue, sw0, sw1, btn, clk);
     input sw0, sw1;
