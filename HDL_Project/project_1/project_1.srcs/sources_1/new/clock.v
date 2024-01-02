@@ -19,14 +19,15 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module clock(clk, enb, btn, mode, hour, min, sec);
+module clock(clk, enb, btn, mode, hour, min, sec, h1, h2, m1, m2, s1, s2);
     input clk;
     input enb;
 //    input sw0, sw1;
     input [3:0] btn;
     input mode;
     output reg [5:0] hour, min, sec;
-
+    output [3:0] h1, h2, m1, m2, s1, s2;
+    
     wire p0, p1, p2, p3;
     wire [3:0] p;
     edgeDetector e0(btn[0], clk, p0);
@@ -38,21 +39,24 @@ module clock(clk, enb, btn, mode, hour, min, sec);
 
     always @ (posedge clk)
     begin
-        if(|p) begin
-            if(mode == 0) begin
-//            if(|p) begin
+        if (mode == 0) begin
+            if(|p) begin
                 case (p)
-                    4'b0100: begin
+                    4'b1000:begin
+                        if (hour >= 6'd23) hour <= 6'd0;
+                        else hour <= hour + 6'd1;
+                    end
+                    4'b0100:begin
+                        if (hour <= 6'd0) hour <= 6'd23;
+                        else hour <= hour - 6'd1;
+                    end                    
+                    4'b0010: begin
                         if (min >= 6'd59) begin
                             min <= 0;
                             if (hour >= 6'd23) hour <= 6'd0;
                             else hour <= hour + 6'd1;
                         end
-                        else min <= min+6'd1;
-                    end
-                    4'b1000:begin
-                        if (hour >= 6'd23) hour <= 6'd0;
-                        else hour <= hour + 6'd1;
+                        else min <= min + 6'd1;
                     end
                     4'b0001: begin
                         if (min <= 6'd0) begin
@@ -62,10 +66,6 @@ module clock(clk, enb, btn, mode, hour, min, sec);
                         end
                         else min <= min - 6'd1;
                     end
-                    4'b0010:begin
-                        if (hour <= 6'd0) hour <= 6'd23;
-                        else hour <= hour - 6'd1;
-                    end
                 endcase
 //            end
             end
@@ -74,7 +74,7 @@ module clock(clk, enb, btn, mode, hour, min, sec);
             if(sec >= 6'd59) begin   
                 sec <= 0;
                 if( min >= 6'd59) begin   
-                    min<=0;
+                    min <= 0;
                     if( hour >= 6'd23) hour <= 0;
                     else hour <= hour + 6'd1;
                 end
@@ -83,4 +83,11 @@ module clock(clk, enb, btn, mode, hour, min, sec);
             else sec <= sec + 6'd1;
         end
     end
+            
+//    assign h1 = hour / 6'd10;
+//    assign h2 = hour % 6'd10;
+//    assign m1 = min / 6'd10;
+//    assign m2 = min % 6'd10;
+//    assign s1 = sec / 6'd10;
+//    assign s2 = sec % 6'd10;
 endmodule

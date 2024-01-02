@@ -34,7 +34,6 @@ read_verilog -library xil_defaultlib {
   {C:/Users/vanbi/OneDrive - hcmut.edu.vn/Subjects/TKLL_HDL/HDL_Project/project_1/project_1.srcs/sources_1/new/alarmClk.v}
   {C:/Users/vanbi/OneDrive - hcmut.edu.vn/Subjects/TKLL_HDL/HDL_Project/project_1/project_1.srcs/sources_1/new/clock.v}
   {C:/Users/vanbi/OneDrive - hcmut.edu.vn/Subjects/TKLL_HDL/HDL_Project/project_1/project_1.srcs/sources_1/new/countClock.v}
-  {C:/Users/vanbi/OneDrive - hcmut.edu.vn/Subjects/TKLL_HDL/HDL_Project/project_1/project_1.srcs/sources_1/new/countTimer.v}
   {C:/Users/vanbi/OneDrive - hcmut.edu.vn/Subjects/TKLL_HDL/HDL_Project/project_1/project_1.srcs/sources_1/new/edge_detector.v}
   {C:/Users/vanbi/OneDrive - hcmut.edu.vn/Subjects/TKLL_HDL/HDL_Project/project_1/project_1.srcs/sources_1/new/get1hz.v}
   {C:/Users/vanbi/OneDrive - hcmut.edu.vn/Subjects/TKLL_HDL/HDL_Project/project_1/project_1.srcs/sources_1/new/mmdd.v}
