@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-| Date         : Tue Jan  2 23:51:10 2024
+| Date         : Wed Jan  3 09:56:54 2024
 | Host         : RamBo running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file combine_control_sets_placed.rpt
 | Design       : combine
@@ -64,26 +64,26 @@ Table of Contents
 +----------------+------------------------------+---------------------+------------------+----------------+
 |  Clock Signal  |         Enable Signal        |   Set/Reset Signal  | Slice Load Count | Bel Load Count |
 +----------------+------------------------------+---------------------+------------------+----------------+
-|  clk_IBUF_BUFG | alarm/al_on                  |                     |                1 |              2 |
 |  clk_IBUF_BUFG | counting/timeout_on          |                     |                1 |              2 |
+|  clk_IBUF_BUFG | alarm/al_on                  |                     |                1 |              2 |
 |  clk_IBUF_BUFG | mode_controller[3]_i_2_n_0   | mode_controller     |                1 |              8 |
-|  clk_IBUF_BUFG | dc/e3/E[0]                   |                     |                1 |             10 |
-|  clk_IBUF_BUFG | dc/e2/counthr_reg[4]_0[0]    |                     |                2 |             10 |
-|  clk_IBUF_BUFG | dc/e2/mm_reg[4][0]           |                     |                3 |             10 |
-|  clk_IBUF_BUFG | dc/e2/a_hr_reg[4][0]         |                     |                2 |             10 |
 |  clk_IBUF_BUFG | counting/countsec[4]_i_1_n_0 |                     |                2 |             10 |
-|  clk_IBUF_BUFG | dc/e1/E[0]                   |                     |                2 |             12 |
-|  clk_IBUF_BUFG | dc/e1/a_min_reg[5][0]        |                     |                2 |             12 |
+|  clk_IBUF_BUFG | dc/e3/E[0]                   |                     |                1 |             10 |
+|  clk_IBUF_BUFG | dc/e2/mm_reg[4][0]           |                     |                3 |             10 |
+|  clk_IBUF_BUFG | dc/e2/counthr_reg[4]_0[0]    |                     |                2 |             10 |
+|  clk_IBUF_BUFG | dc/e2/a_hr_reg[4][0]         |                     |                2 |             10 |
+|  clk_IBUF_BUFG | led1_reg[0]_i_1_n_0          | led1_reg[2]_i_1_n_0 |                6 |             12 |
 |  clk_IBUF_BUFG | dc/e1/dd_reg[5][0]           |                     |                4 |             12 |
 |  clk_IBUF_BUFG | dc/e1/sec_reg[0][0]          | dc/e1/SR[0]         |                3 |             12 |
+|  clk_IBUF_BUFG | dc/e1/E[0]                   |                     |                2 |             12 |
+|  clk_IBUF_BUFG | dc/e1/a_min_reg[5][0]        |                     |                2 |             12 |
 |  clk_IBUF_BUFG | dc/e2/countmin_reg[5][0]     |                     |                3 |             12 |
-|  clk_IBUF_BUFG | led1_reg[0]_i_1_n_0          | led1_reg[2]_i_1_n_0 |                6 |             12 |
 |  clk_IBUF_BUFG | led1_reg[0]_i_1_n_0          | led1_reg[1]_i_1_n_0 |                5 |             14 |
 |  clk_IBUF_BUFG | led1_reg[0]_i_1_n_0          |                     |                7 |             18 |
 |  clk_IBUF_BUFG |                              |                     |               11 |             28 |
 |  clk_IBUF_BUFG |                              | get/clear           |                7 |             56 |
-|  clk_IBUF_BUFG | alarm/al_on                  | alert/counter_red   |                7 |             56 |
 |  clk_IBUF_BUFG | counting/timeout_on          | alert/counter_blue  |                7 |             56 |
+|  clk_IBUF_BUFG | alarm/al_on                  | alert/counter_red   |                7 |             56 |
 +----------------+------------------------------+---------------------+------------------+----------------+
 
 

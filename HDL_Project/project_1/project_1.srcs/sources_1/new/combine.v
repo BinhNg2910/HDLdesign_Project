@@ -70,8 +70,6 @@ module combine(led1, led2, led3, led4, led5, led6, l_red, l_blue, sw0, sw1, btn,
     assign a_min1 = a_min / 6'd10;
     assign a_min2 = a_min % 6'd10;
     
-
-    
     assign counth1 = counthr / 6'd10;
     assign counth2 = counthr % 6'd10;
     assign countm1 = countmin / 6'd10;
@@ -94,7 +92,7 @@ module combine(led1, led2, led3, led4, led5, led6, l_red, l_blue, sw0, sw1, btn,
 //        end
         if(sw1 != sw1_prev)begin
             if(mode_controller >= 5) mode_controller <= 0;
-            else mode_controller <= mode_controller + 1;    
+            else mode_controller <= mode_controller + 1'b1;    
         end
         sw1_prev <= sw1;        
        
